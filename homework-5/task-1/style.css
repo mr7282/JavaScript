@@ -1,0 +1,58 @@
+html,
+body {   
+    height: 100%;
+    background:whitesmoke;
+}
+
+header,
+main,
+footer {
+    margin: 0 auto;
+    width: 700px;
+}
+
+main {
+    height: 800px;
+}
+
+footer {
+    height: 50px;
+}
+
+.header {
+    margin: 0 auto;
+    width: 500px;
+    height: 100px;
+}
+
+h1 {
+    text-shadow: #dad7d7 3px 3px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+  }
+ 
+  td:first-child {
+    line-height: 80px;
+    border: 1px solid #888888;
+    width: 15px;
+    height: 80px;
+    background-color: #EEEEEE;
+    text-align: center;
+
+}
+
+td {
+    border: 1px solid #888888;
+    width: 80px;
+    height: 80px;
+    background-color: #EEEEEE;
+    text-align: center;
+
+}
+
+#lastTr td{
+    height: 15px;
+}
