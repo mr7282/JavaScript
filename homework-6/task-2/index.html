@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Галерея</title>
+  <style>
+    main {
+      margin: 0 auto;
+      width: 700px;
+    }
+
+    .containerProduct {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 100px;
+    }
+
+    .product {
+      border: 1px solid #000;
+      margin: 0px 10px 10px;
+      align-items: center;
+      text-align: center;
+      padding: 15px 15px;
+      box-shadow: 10px 5px 5px;
+    }
+
+    .containerOrder {
+      display: flex;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
+    .resultbox {
+      border: 1px solid #000;
+      margin: 0px 10px 10px;
+      padding: 5px;
+      box-shadow: 10px 5px 5px;
+    }
+
+    .buy {
+      border-radius: 4px;
+      box-shadow: 5px 5px 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <div class="containerProduct">
+      <div class="product">
+        <img src="images\Corrector.jpg" alt="#">
+        <p>Штрих-корректор</p>
+        <p>86 руб.</p>
+        <button class="buy" data-price ="86">Купить</button>
+      </div>
+      <div class="product">
+        <img src="images\glue.jpg" alt="#">
+        <p>Клей-карандаш</p>
+        <p>105 руб.</p>
+        <button class="buy" data-price ="105">Купить</button>
+      </div>
+      <div class="product">
+        <img src="images\punch.jpg" alt="#">
+        <p>Дырокол</p>
+        <p>245 руб.</p>
+        <button class="buy" data-price="245">Купить</button>
+      </div>
+    </div>
+    <div class="containerOrder">
+      <div class="resultbox">
+        Количество товаров: <span id="countProduct"></span> шт.
+      </div>
+      <div class="resultbox">
+        Итоговая сумма: <span id="result"></span> руб.
+      </div>
+    </div>
+  </main>
+  <script src="js.js"></script>
+</body>
+</html>

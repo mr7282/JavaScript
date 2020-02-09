@@ -1,0 +1,78 @@
+<meta charset="UTF-8">
+<script>
+  "use strict";
+
+  /*
+   5. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),
+   где arg1, arg2 – значения аргументов, operation – строка с названием операции. В зависимости от
+   переданного значения операции (использовать switch) выполнить одну из арифметических операций
+   (использовать функции из задания 5) и вернуть полученное значение.
+   */
+
+  /**
+   * Функция суммы.
+   * @param {number} a Первый параметр
+   * @param {number} b Второй параметр
+   * @returns {number|*} Возвращает число, если было передано два числа.
+   */
+  function add(a, b) {
+    return a + b;
+  }
+
+  /**
+   * Функция вычитания.
+   * @param {number} a Первый параметр
+   * @param {number} b Второй параметр
+   * @returns {number} Число, получившееся при вычете из параметра a параметр b.
+   */
+  function reduce(a, b) {
+    return a - b;
+  }
+
+  /**
+   * Функция деления.
+   * @param {number} a Первый параметр
+   * @param {number} b Второй параметр
+   * @returns {number} Число, получившееся при делении параметра a на параметр b.
+   */
+  function divide(a, b) {
+    return a / b;
+  }
+
+  /**
+   * Функция умножения.
+   * @param {number} a Первый параметр
+   * @param {number} b Второй параметр
+   * @returns {number} Число, получившееся при умножении параметра a на параметр b.
+   */
+  function multiply(a, b) {
+    return a * b;
+  }
+
+  /**
+   * Функция вызывает одну из арифметических операций.
+   * @param {number} arg1 Первый параметр
+   * @param {number} arg2 Второй параметр
+   * @param {string} operation Операция, которую необходимо выполнить.
+   * @returns {*} Значение, которое вернет функция выбранной операции.
+   */
+  function mathOperation(arg1, arg2, operation) {
+    switch(operation) {
+      case 'add':
+        return add(arg1, arg2);
+      case 'reduce':
+        return reduce(arg1, arg2);
+      case 'divide':
+        return divide(arg1, arg2);
+      case 'multiply':
+        return multiply(arg1, arg2);
+      default:
+        return 'Неверная операция.';
+    }
+  }
+
+  console.log(mathOperation(6, 2, 'add')); // 8
+  console.log(mathOperation(6, 2, 'reduce')); // 4
+  console.log(mathOperation(6, 2, 'divide')); // 3
+  console.log(mathOperation(6, 2, 'multiply')); // 12
+</script>
