@@ -17,6 +17,7 @@ const gallery = {
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
+    openedImageNotFound: 'images/gallery/notFound.jpg'
   },
 
   /**
@@ -45,8 +46,11 @@ const gallery = {
     if (event.target.tagName !== 'IMG') {
       return;
     }
-    // Открываем картинку с полученным из целевого тега (data-full_image_url аттрибут).
-    this.openImage(event.target.dataset.full_image_url);
+
+    let img = new Image();
+    img.onload = () => this.openImage(event.target.dataset.full_image_url);
+    img.onerror = () => this.openImage(this.settings.openedImageNotFound);
+    img.src = event.target.dataset.full_image_url;
   },
 
   /**
