@@ -26,6 +26,8 @@ const gallery = {
     openedArrowLeftClass: "arrowLeftClass",
     arrowRightSrc: "images/gallery/arrowRight.png",
     arrowLeftSrc: "images/gallery/arrowLeft.png",
+    arrayImage: [],
+    eventOpenImage: null,
   },
 
   /**
@@ -42,6 +44,8 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
+
+      this.getArrayImage();
   },
 
   /**
@@ -59,6 +63,7 @@ const gallery = {
     img.onload = () => this.openImage(event.target.dataset.full_image_url);
     img.onerror = () => this.openImage(this.settings.openedImageNotFound);
     img.src = event.target.dataset.full_image_url;
+    this.settings.eventOpenImage = event.target.dataset.full_image_url;
   },
 
   /**
@@ -91,21 +96,18 @@ const gallery = {
    * @returns {array}
    */
   getArrayImage() {
-    let arrayImage = [];
    document.querySelectorAll(".miniImg").forEach(miniImg => {
-     arrayImage.push(miniImg.dataset.full_image_url);
+    this.settings.arrayImage.push(miniImg.dataset.full_image_url);
    }) 
-   return arrayImage;
   },
 
   /**
    * 
    */
   leafRight() {
-    let arrayImage = this.getArrayImage();
-    for (let index = 0; index < arrayImage.length; index++) {
-      if (arrayImage[index] === document.querySelector(`.${this.settings.openedImageClass}`).src) {
-        this.openImage(arrayImage[index+1]);
+     for (let index = 0; index < this.settings.arrayImage.length; index++) {
+      if (this.settings.arrayImage[index] === this.settings.eventOpenImage) {
+        this.openImage(this.settings.arrayImage[index+1]);
       }      
     }
   },
@@ -152,7 +154,6 @@ const gallery = {
     // Создаем картинку, которую хотим открыть, ставим класс и добавляем ее в контейнер-обертку.
     const image = new Image();
     image.classList.add(this.settings.openedImageClass);
-    image.setAttribute(data-full_image_url);
     galleryWrapperElement.appendChild(image);
 
     // Добавляем контейнер-обертку в тег body.
