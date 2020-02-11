@@ -12,6 +12,9 @@
  * @property {string} openedArrowLeftClass Класс для левой стрелки
  * @property {string} arrowRightSrc Путь к картинке правой стрелки
  * @property {string} arrowLeftSrc Путь к картинке левой стрелки
+ * @property {string} miniImageClass Класс всех картинок
+ * @property {array} arrayImage Массив src всех больших картинок
+ * @property {string} nowOpenImageSrc Путь к картинке левой стрелки
  */
 const gallery = {
   settings: {
@@ -22,12 +25,13 @@ const gallery = {
     openedImageCloseBtnClass: 'galleryWrapper__close',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
     openedImageNotFound: 'images/gallery/notFound.jpg',
+    miniImageClass: 'miniImg',
     openedArrowRightClass: "arrowRightClass",
     openedArrowLeftClass: "arrowLeftClass",
     arrowRightSrc: "images/gallery/arrowRight.png",
     arrowLeftSrc: "images/gallery/arrowLeft.png",
     arrayImage: [],
-    eventOpenImage: null,
+    nowOpenImageSrc: null,
   },
 
   /**
@@ -44,6 +48,7 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
+    // Получаем массив src всех больших картинок
     this.getArrayImage();
   },
 
@@ -62,7 +67,6 @@ const gallery = {
     img.onload = () => this.openImage(event.target.dataset.full_image_url);
     img.onerror = () => this.openImage(this.settings.openedImageNotFound);
     img.src = event.target.dataset.full_image_url;
-    // this.settings.eventOpenImage = event.target.dataset.full_image_url;
   },
 
   /**
@@ -72,7 +76,7 @@ const gallery = {
   openImage(src) {
     // Получаем контейнер для открытой картинки, в нем находим тег img и ставим ему нужный src.
     this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
-    this.settings.eventOpenImage = src;
+    this.settings.nowOpenImageSrc = src;
   },
 
   /**
@@ -92,28 +96,30 @@ const gallery = {
   },
 
   /**
-   * Возвращает массив всех картинок имеющихся на странице
-   * @returns {array}
+   * Создает массив всех картинок имеющихся на странице
    */
   getArrayImage() {
-   document.querySelectorAll(".miniImg").forEach(miniImg => {
+   document.querySelectorAll(`.${this.settings.miniImageClass}`).forEach(miniImg => {
     this.settings.arrayImage.push(miniImg.dataset.full_image_url);
-   }) 
+   })
   },
 
   /**
    * Открывает следующую картинку
    */
   leafRight() {
-    let indexArr = this.settings.arrayImage.indexOf(this.settings.eventOpenImage);
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.nowOpenImageSrc);
     if (indexArr === (this.settings.arrayImage.length - 1)) {
       indexArr = -1;
     }
     this.openImage(this.settings.arrayImage[indexArr + 1]);
   },
 
+  /**
+   * Открывает предыдущюю картинку
+   */
   leafLeft() {
-    let indexArr = this.settings.arrayImage.indexOf(this.settings.eventOpenImage);
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.nowOpenImageSrc);
     if (indexArr === 0) {
       indexArr = (this.settings.arrayImage.length);
     }
