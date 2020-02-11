@@ -44,8 +44,7 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
-
-      this.getArrayImage();
+    this.getArrayImage();
   },
 
   /**
@@ -63,7 +62,7 @@ const gallery = {
     img.onload = () => this.openImage(event.target.dataset.full_image_url);
     img.onerror = () => this.openImage(this.settings.openedImageNotFound);
     img.src = event.target.dataset.full_image_url;
-    this.settings.eventOpenImage = event.target.dataset.full_image_url;
+    // this.settings.eventOpenImage = event.target.dataset.full_image_url;
   },
 
   /**
@@ -73,6 +72,7 @@ const gallery = {
   openImage(src) {
     // Получаем контейнер для открытой картинки, в нем находим тег img и ставим ему нужный src.
     this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
+    this.settings.eventOpenImage = src;
   },
 
   /**
@@ -102,18 +102,22 @@ const gallery = {
   },
 
   /**
-   * 
+   * Открывает следующую картинку
    */
   leafRight() {
-     for (let index = 0; index < this.settings.arrayImage.length; index++) {
-      if (this.settings.arrayImage[index] === this.settings.eventOpenImage) {
-        this.openImage(this.settings.arrayImage[index+1]);
-      }      
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.eventOpenImage);
+    if (indexArr === (this.settings.arrayImage.length - 1)) {
+      indexArr = -1;
     }
+    this.openImage(this.settings.arrayImage[indexArr + 1]);
   },
 
   leafLeft() {
-    console.log("Всё ок! слево");
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.eventOpenImage);
+    if (indexArr === 0) {
+      indexArr = (this.settings.arrayImage.length);
+    }
+    this.openImage(this.settings.arrayImage[indexArr - 1]);
   },
 
   /**
@@ -168,6 +172,7 @@ const gallery = {
    */
   close() {
     document.querySelector(`.${this.settings.openedImageWrapperClass}`).remove();
+    this.settings.arrayImage = [];
   }
 };
 
