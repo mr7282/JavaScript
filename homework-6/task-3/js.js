@@ -178,7 +178,6 @@ const gallery = {
    */
   close() {
     document.querySelector(`.${this.settings.openedImageWrapperClass}`).remove();
-    this.settings.arrayImage = [];
   }
 };
 
