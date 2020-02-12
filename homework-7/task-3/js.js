@@ -176,6 +176,7 @@ const map = {
  * @property {string} lastStepDirection Направление, куда сходила змейка прошлый раз.
  */
 const snake = {
+  config,
   body: null,
   direction: null,
   lastStepDirection: null,
@@ -223,7 +224,7 @@ const snake = {
     // Записываем направление движения, которое сейчас произойдет как направление прошлого шага.
     this.lastStepDirection = this.direction;
     // Вставляем следующую точку в начало массива.
-    this.body.unshift(this.getNextStepHeadPoint());
+    this.body.unshift(this.checkNextStepHeadPoint());
     // Удаляем последний лишний элемент.
     this.body.pop();
   },
@@ -276,6 +277,25 @@ const snake = {
       case 'left':
         return {x: firstPoint.x - 1, y: firstPoint.y};
     }
+  },
+
+
+  /**
+   * Проверяет выход за край, если да то возвращает подмененные координаты следующей точки.***********************************************************************************
+   * @returns {{x: int, y: int}} Следующая точка куда придет змейка.
+   */
+  checkNextStepHeadPoint() {
+    const nextPoint = this.getNextStepHeadPoint();
+    if (nextPoint.x === this.config.getColsCount())  {
+      return {x: 0, y: nextPoint.y};
+    } else if (nextPoint.y === this.config.getRowsCount()) {
+      return {x: nextPoint.x, y: 0};
+    } else if (nextPoint.x < 0) {
+      return {x: this.config.getColsCount() - 1, y: nextPoint.y};
+    } else if (nextPoint.y < 0) {
+      return {x: nextPoint.x, y: this.config.getRowsCount() - 1};
+    }
+    return nextPoint;
   },
 
   /**
@@ -646,11 +666,7 @@ const game = {
     // Получаем следующую точку головы змейки в соответствии с текущим направлением.
     const nextHeadPoint = this.snake.getNextStepHeadPoint();
     // Змейка может сделать шаг если следующая точка не на теле змейки и точка внутри игрового поля.
-    return !this.snake.isOnPoint(nextHeadPoint) &&
-      nextHeadPoint.x < this.config.getColsCount() &&
-      nextHeadPoint.y < this.config.getRowsCount() &&
-      nextHeadPoint.x >= 0 &&
-      nextHeadPoint.y >= 0;
+    return !this.snake.isOnPoint(nextHeadPoint); 
   },
 };
 
