@@ -1,0 +1,11 @@
+Решение ДЗ курса "Базовый курс JavaScript", 6 занятие.
+
+1 задание - https://youtu.be/dJtksOD0CVU
+2 задание - https://youtu.be/GkGoukqJ-T0
+3 задание - https://youtu.be/atHVj8aLK4k
+4 задание - https://youtu.be/8Vj8X6Jif_A
+
+Дополнительный материал для изучения:
+
+Видео про методы some и forEach у массива - https://youtu.be/bqeb-j4_F3M
+Статья про функции высшего порядка: https://habr.com/company/ruvds/blog/428570/

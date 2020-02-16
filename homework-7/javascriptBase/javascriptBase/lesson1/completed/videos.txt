@@ -1,0 +1,10 @@
+Решение ДЗ курса "Базовый курс JavaScript", 1 занятие.
+
+1 задание - https://youtu.be/oK0pXa6HCSg
+2 задание - https://youtu.be/bkoMbt8mW4k
+3 задание - https://youtu.be/uG9f1aycr74
+4 задание - https://youtu.be/R_NnAb4yphQ
+5 задание - https://youtu.be/Cf896sY3wIA
+
+Видео для обязательного просмотра:
+https://youtu.be/b19I-q4HHEU - Деление операторов по количеству операндов.

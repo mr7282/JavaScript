@@ -1,0 +1,7 @@
+Решение ДЗ курса "Базовый курс JavaScript", 4 занятие.
+
+1 задание - https://youtu.be/dP4ir5JoibA
+2 задание - https://youtu.be/in9DalG7OG0
+3 задание - https://youtu.be/rIBssQDu6Ic
+
+Дополнительный материал к прочтению в папке additional по ссылке с домашним заданием.

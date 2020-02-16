@@ -1,0 +1,14 @@
+Решение ДЗ курса "Базовый курс JavaScript", 2 занятие.
+
+1 задание - https://youtu.be/KpnHGQSfqg4
+2 задание - https://youtu.be/RBqxihDb52I
+3 задание - https://youtu.be/vYkV9QzNItc
+4 задание - https://youtu.be/aYYPUrXDzzU
+5 задание - https://youtu.be/BrGkyPthamw
+6 задание - https://youtu.be/Q70pJ1aSWOk
+
+Видео обязательные для просмотра:
+
+Видео про стрелчные функции стандарта ES6 - https://youtu.be/TjeY_VjzSt0
+Видео про JSDoc - https://youtu.be/pM9YHZ5Og5E
+Видео про области видимости - https://youtu.be/lP0nrofUIRU

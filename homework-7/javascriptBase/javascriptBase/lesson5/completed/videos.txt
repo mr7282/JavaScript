@@ -1,0 +1,11 @@
+Решение ДЗ курса "Базовый курс JavaScript", 5 занятие.
+
+1 задание - https://youtu.be/Ipdj8P4w3qQ
+2 задание - https://youtu.be/5L8W3MF_i5Q
+3 задание - https://youtu.be/l_RR-jDpMj8
+
+Видео обязательное к просмотру:
+
+Работа с атрибутами в DOM - https://youtu.be/Z915M9-FZ-c
+Всплытие событий в javascript и их остановка - https://youtu.be/Ps3Fsr8Wu3E
+Умное использование событий - https://youtu.be/kzsSg6lUAZo

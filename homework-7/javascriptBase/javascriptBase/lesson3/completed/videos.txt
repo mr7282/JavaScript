@@ -1,0 +1,10 @@
+Решение ДЗ курса "Базовый курс JavaScript", 3 занятие.
+
+1 задание - https://youtu.be/0EpAD1aE_kQ
+2 задание - https://youtu.be/e1y3EQmLmww
+3 задание - https://youtu.be/ViNNf_S3Hek
+4 задание - https://youtu.be/_x2ypHPqNPk
+5 задание - https://youtu.be/eiGuyRjHn3w
+
+Видео обязательное к просмотру:
+https://youtu.be/zuWr0R_aLEI - Массив - это объект.
