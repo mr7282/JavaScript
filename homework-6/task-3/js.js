@@ -8,6 +8,13 @@
  * @property {string} settings.openedImageScreenClass Класс для ширмы открытой картинки.
  * @property {string} settings.openedImageCloseBtnClass Класс для картинки кнопки закрыть.
  * @property {string} settings.openedImageCloseBtnSrc Путь до картинки кнопки открыть.
+ * @property {string} openedArrowRightClass Класс для правой стрелки
+ * @property {string} openedArrowLeftClass Класс для левой стрелки
+ * @property {string} arrowRightSrc Путь к картинке правой стрелки
+ * @property {string} arrowLeftSrc Путь к картинке левой стрелки
+ * @property {string} miniImageClass Класс всех картинок
+ * @property {array} arrayImage Массив src всех больших картинок
+ * @property {string} nowOpenImageSrc Путь к картинке левой стрелки
  */
 const gallery = {
   settings: {
@@ -17,7 +24,14 @@ const gallery = {
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
-    openedImageNotFound: 'images/gallery/notFound.jpg'
+    openedImageNotFound: 'images/gallery/notFound.jpg',
+    miniImageClass: 'miniImg',
+    openedArrowRightClass: "arrowRightClass",
+    openedArrowLeftClass: "arrowLeftClass",
+    arrowRightSrc: "images/gallery/arrowRight.png",
+    arrowLeftSrc: "images/gallery/arrowLeft.png",
+    arrayImage: [],
+    nowOpenImageSrc: null,
   },
 
   /**
@@ -34,6 +48,8 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
+    // Получаем массив src всех больших картинок
+    this.getArrayImage();
   },
 
   /**
@@ -60,6 +76,7 @@ const gallery = {
   openImage(src) {
     // Получаем контейнер для открытой картинки, в нем находим тег img и ставим ему нужный src.
     this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
+    this.settings.nowOpenImageSrc = src;
   },
 
   /**
@@ -76,6 +93,37 @@ const gallery = {
 
     // Возвращаем полученный из метода createScreenContainer контейнер.
     return this.createScreenContainer();
+  },
+
+  /**
+   * Создает массив всех картинок имеющихся на странице
+   */
+  getArrayImage() {
+   document.querySelectorAll(`.${this.settings.miniImageClass}`).forEach(miniImg => {
+    this.settings.arrayImage.push(miniImg.dataset.full_image_url);
+   })
+  },
+
+  /**
+   * Открывает следующую картинку
+   */
+  leafRight() {
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.nowOpenImageSrc);
+    if (indexArr === (this.settings.arrayImage.length - 1)) {
+      indexArr = -1;
+    }
+    this.openImage(this.settings.arrayImage[indexArr + 1]);
+  },
+
+  /**
+   * Открывает предыдущюю картинку
+   */
+  leafLeft() {
+    let indexArr = this.settings.arrayImage.indexOf(this.settings.nowOpenImageSrc);
+    if (indexArr === 0) {
+      indexArr = (this.settings.arrayImage.length);
+    }
+    this.openImage(this.settings.arrayImage[indexArr - 1]);
   },
 
   /**
@@ -98,6 +146,20 @@ const gallery = {
     closeImageElement.src = this.settings.openedImageCloseBtnSrc;
     closeImageElement.addEventListener('click', () => this.close());
     galleryWrapperElement.appendChild(closeImageElement);
+
+    //Создаем Правую стрелку для переключения картинок, ставим класс, src и добавляем ее в контейнер-обертку.
+    const arrowRightElement = new Image();
+    arrowRightElement.classList.add(this.settings.openedArrowRightClass);
+    arrowRightElement.src = this.settings.arrowRightSrc;
+    arrowRightElement.addEventListener('click', () => this.leafRight());
+    galleryWrapperElement.appendChild(arrowRightElement);
+
+    //Создаем Левую стрелку для переключения картинок, ставим класс, src и добавляем ее в контейнер-обертку.
+    const arrowLeftElement = new Image();
+    arrowLeftElement.classList.add(this.settings.openedArrowLeftClass);
+    arrowLeftElement.src = this.settings.arrowLeftSrc;
+    arrowLeftElement.addEventListener('click', () => this.leafLeft());
+    galleryWrapperElement.appendChild(arrowLeftElement);
 
     // Создаем картинку, которую хотим открыть, ставим класс и добавляем ее в контейнер-обертку.
     const image = new Image();
